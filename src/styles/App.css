@@ -1,0 +1,53 @@
+/* 
+pc-ground为pc端的背景适配
+mobile-frame为手机背景框
+*/
+/* 移动端优先*/
+.pc-background{
+    width:100%; /* 使内容铺满整个手机屏幕 */
+    height: 100vh;/* 强制显示高度等于屏幕高度 */
+    background-color: #fff; /* 在移动端时背景为白色或透明 */
+    overflow: hidden;/* 禁止外层滚动 */
+}
+
+.mobile-frame{
+    /* 占满屏幕 */
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    overflow-y: auto; /* 允许垂直滚动 */
+}
+
+
+/* 
+电脑端适配 
+当屏幕宽度大于600px时执行下面代码
+*/
+@media screen and (min-width:600px) {
+    
+  .pc-background {
+    background-color: #e2f0f7c5; /* 只有电脑上显示蓝灰色 */
+    /* 使手机屏幕居中 */
+    display: flex; 
+    justify-content: center;/*左右居中 */
+    align-items: center; /*垂直居中 */
+
+    height:100vh;/* 确保背景永远铺满整个屏幕 */
+    overflow: hidden;/* 防止出现双滚动条 */
+  }
+
+  /* 内层变成固定的手机尺寸 */
+  .mobile-frame {
+    /* 固定宽度和高度，仿照手机尺寸（其实并不 XD） */
+    width: 480px; 
+    height: 85vh; 
+    overflow-y: auto; /* 允许垂直滚动 */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* 边框阴影 */
+
+    position: relative;/* 相对位置，方便定义元素位置 */
+
+    /* 使用grid布局 */
+    display:grid;
+  }
+
+}

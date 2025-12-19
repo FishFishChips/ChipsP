@@ -1,0 +1,89 @@
+/*
+页面设置样式
+*/
+.setting-page
+{
+    /* 固定设置页面，防止因内容过多而内容溢出 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    /* 实现效果：设置页面会撑满父容器 */
+    /* 
+    确认设置页面布局
+    布局：弹性盒flex布局
+    元素排列：垂直排列
+    */
+    display: flex;
+    flex-direction:column;
+    /* 禁止整个页面滑动，只需要设置内容部分进行滑动即可 */
+    overflow: hidden;
+}
+
+/* 
+自定义导航栏返回按钮的样式
+风格：像素风
+部分功能：去除电脑端点击时的黑边
+*/
+.pixel-btn{
+  /* 调整按钮背景大小 */
+  width: 36px;
+  height: 36px;
+  
+  /* 颜色设置 */
+  background-color: #a98bd3; /* 按钮背景颜色 */
+  color: #fff;/* 按钮本体颜色 */
+  
+  /* 像素风边框 */
+  border: 3px solid #000;
+  border-radius: 0; /* 严禁圆角 */
+  
+  /* 按钮的硬阴影 */
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.8);
+  
+  /* 居中图标 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 其他设置 */
+  cursor: pointer;/* 当鼠标移到按钮上时，鼠标会变成点击形态 */
+  transition: all 0.2s;/* 过渡动画时间 */
+}
+
+/* 按钮按住时的动画效果 */
+.pixel-btn:active{
+    /*
+    阴影变紫
+    模拟像素风压感
+    */
+  box-shadow: 1px 1px 0 rgba(124, 58, 237, 0.8);
+  transform: translate(2px, 2px); 
+}
+
+
+.setting-content{
+    flex:1;/* 导航栏所占布局为0，flex:1即让剩下内容占满设置页面的布局 */
+    min-height: 0; 
+    overflow-y: auto;/* 允许内容部分滚动 */
+}
+
+/* 
+
+  针对手机框的滚动条美化：设置成透明，滚动条依旧存在
+  WebKit内核浏览器：Chrome/Edge/Safari
+  不兼容Firefox/IE
+*/
+/* 滚动条样式 */
+.setting-content::-webkit-scrollbar {
+  width:6px;
+}
+/* 滚动条轨道样式：设置成透明 */
+.setting-content::-webkit-scrollbar-track{
+  background: transparent;
+}
+/* 滚动条滑块样式:设置成透明 */
+.setting-content::-webkit-scrollbar-thumb {
+  background-color: #fff /* 颜色：黑色 */
+}

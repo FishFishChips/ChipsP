@@ -1,13 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>chips-p</title>
+    <link rel="icon" type="image/svg+xml" href="/ChipsP.svg" />
+    <!-- 进行了移动端适配
+     maximum-scale=1.0：允许用户缩放到的最大比例为1.0，即1:1原样显示，使用户无法通过手势将页面放大
+     user-scalable=no：禁止用户进行缩放操作
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- 引入英文像素字体Silkscreen -->
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <title>Chips:p</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- 加载页面 -->
+       <div class="loading" >Loading...</div>
+
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
+
+

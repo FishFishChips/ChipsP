@@ -1,0 +1,46 @@
+/* 
+全局字体定义
+风格：像素风
+方式：本地导入
+*/
+/* 引入中文像素字体 */
+@font-face{
+  font-family: 'ArkPixelFont';
+  src: url('@/assets/fonts/Cubic_11.ttf') format('truetype');
+  font-display:swap;
+}
+/* 清楚手机框周围白边问题 */
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  /* 全局字体应用设置 */
+  font-family:  'Silkscreen','ArkPixelFont', monospace;/* 字体栈 */
+  /* 字体抗锯齿关闭 */
+  -webkit-font-smoothing: none;/* 作用对象：WebKit/Blink内核 */
+  -moz-osx-font-smoothing: grayscale;/* 作用对象： 适配Firefox/macOS*/
+  /* 
+  移动端字体模糊优化
+  禁止移动端自动调整字号
+  */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+
+  /* 像素风图片渲染优化 */
+  image-rendering: pixelated;
+}
+
+/* 防止#app被限制宽度 */
+#app{
+    max-width: none !important; /* 强制取消最大宽度限制 */
+    display:block;/* 防止grid或flex导致的奇怪布局 */
+}
+
+/* 影响所有元素，让所有元素的内边距和边框都算在宽高内，防止炸布局 */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
