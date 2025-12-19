@@ -11,14 +11,8 @@
      elevation: 阴影深度 (true/false)
      style:css美化样式
      -->
-    <var-app-bar class="pixel-nav" title="SETTINGS" title-position="center" text-color="#000000" color="#ffffff"
-      :elevation="false" style="
-       border-bottom: 4px solid #000000;/* 粗边框 */
-       box-shadow: 0 5px 0px #A78BFA; /* 硬阴影 */
-      /* title样式设置 */
-      --app-bar-title-font-size: 22px;/* 标题大小 */
-      letter-spacing: 1px;/* 调整字间距 */
-      ">
+    <var-app-bar class="settingview-pixel-nav" title="SETTINGS" title-position="center"
+      style="--app-bar-title-font-size: 22px;/* 标题字体大小 */" :elevation="false">
       <!-- 左侧插槽：放返回按钮 -->
       <template #left>
         <!-- 自定义像素风返回按钮 -->
@@ -32,20 +26,69 @@
     <!-- 设置选项内容区域 -->
     <main class="setting-content">
       <!-- 使用Varlet的单元格组件 -->
-       <!-- 系统设置单元格 -->
-      <var-cell title="系统设置" description="0.0" border ripple>
+      <!-- 系统设置单元格 -->
+      <var-cell title="系统设置" description="0.0" class="pixel-cell" border @click="openSystemSettings">
+        <template #extra>
+          <var-icon name="chevron-right" />
+        </template>
+      </var-cell>
+      <var-cell title="美化设置" description="0.0" class="pixel-cell" border>
+        <template #extra>
+          <var-icon name="chevron-right" />
+        </template>
+      </var-cell>
+      <var-cell title="API设置" description="0.0" class="pixel-cell" border>
         <template #extra>
           <var-icon name="chevron-right" />
         </template>
       </var-cell>
     </main>
-    
+
+    <!-- 点击系统设置显示的子菜单 -->
+    <!-- 使用Varlet组件的popup模拟 -->
+    <var-popup v-model:show="showSystemSettings" position="right" :overlay="false" class="subpage-popup"
+      teleport=".mobile-frame">
+      <!-- 系统设置子页面的容器 -->
+      <div class="systemdetails">
+
+        <!-- 系统设置子页面的导航栏 -->
+        <var-app-bar title="系统设置" title-position="center" class="settingview-pixel-nav"
+          style="--app-bar-title-font-size: 20px;/* 标题字体大小 */">
+          <!-- 返回按钮插槽，用于关闭popup，不操作路由 -->
+          <template #left>
+            <button class="pixel-btn" @click="showSystemSettings = false">
+              <var-icon name="chevron-left" :size="20" />
+            </button>
+          </template>
+        </var-app-bar>
+
+        <!-- 系统设置子页面的内容区域 -->
+        <main class="systemsub-content">
+          <var-cell title="屏幕切换" description="一键切换全屏/带边框！" border>
+            <template #extra>
+              <!-- 自定义像素风组件 -->
+              <chips-pixelswitch
+              v-model="isFullScreenOn"
+              class="settingview-pixel-switch"
+              ripple="false"
+              />
+              </template>
+          </var-cell>
+          
+        </main>
+
+      </div>
+    </var-popup>
+
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { useAppStore } from '@/stores/appStore.ts'
+import { useAppStore } from '@/stores/appStore'
+import {computed} from 'vue'//引入computed
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia' //引入storeToRefs保持响应性
 
 //声明路由
 const router = useRouter()
@@ -54,8 +97,61 @@ const appStore = useAppStore()//全局状态
 //固定返回Home页面
 const goHome = () => router.push('/')
 
+/* 
+控制系统设置页面的显示/隐藏
+*/
+const showSystemSettings = ref(false)//绑定响应式，默认值为false，即默认关闭
+const openSystemSettings = () => {
+  showSystemSettings.value = true
+}
+
+/*
+控制应用全屏切换
+*/ 
+//使用 storeToRefs 解构状态，保持响应式
+const { isFullScreen } = storeToRefs(appStore)
+//创建一个可读写的计算属性
+const isFullScreenOn = computed({
+  //获取值时：读取store里的状态
+  get: () => isFullScreen.value,
+  //修改值时，即点开开关：调用store的action
+  set: (val:boolean) => appStore.toggleFullScreen(val)
+})
+
+
 </script>
 
 <style scoped>
 @import "@/styles/SettingView.css";
+</style>
+
+<style>
+/*
+自定义导航栏样式
+风格：像素风
+*/
+.settingview-pixel-nav {
+  --app-bar-color: #ffffff;
+  /* 背景设为白色 */
+  --app-bar-text-color: #000000;
+  /* 文字设为黑色 */
+  letter-spacing: 1px;
+
+  /* --- 像素风样式 --- */
+  border-bottom: 4px solid #000000;
+  /* 粗边框 */
+  box-shadow: 0 5px 0px #A78BFA;
+  /* 硬阴影 */
+  margin-bottom: 10px;
+  /* 撑开下边距 */
+}
+
+/* 自定义子页面弹窗样式 */
+.subpage-popup {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
 </style>

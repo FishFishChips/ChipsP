@@ -50,6 +50,7 @@
   /* 其他设置 */
   cursor: pointer;/* 当鼠标移到按钮上时，鼠标会变成点击形态 */
   transition: all 0.2s;/* 过渡动画时间 */
+  outline:none; /*去除黑边 */
 }
 
 /* 按钮按住时的动画效果 */
@@ -67,6 +68,10 @@
     flex:1;/* 导航栏所占布局为0，flex:1即让剩下内容占满设置页面的布局 */
     min-height: 0; 
     overflow-y: auto;/* 允许内容部分滚动 */
+    /* 使手机屏幕居中 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* 
@@ -86,4 +91,34 @@
 /* 滚动条滑块样式:设置成透明 */
 .setting-content::-webkit-scrollbar-thumb {
   background-color: #fff /* 颜色：黑色 */
+}
+
+/* 
+设置选项单元格样式
+风格：像素风
+*/
+.pixel-cell{
+
+  /* 基础样式 */
+  width:95%;
+
+  justify-content: center;
+  background-color: #fff;
+  border: 2px solid #000;
+
+  box-shadow: 4px 4px 0 #000; /* 模拟按键厚度 */
+  margin-bottom:10px; /* 防止硬阴影挡住下面的选项 */ 
+
+  transition: none;/* 关闭元素的过渡动画效果 */
+
+  /* 移动端优化 */
+  touch-action: manipulation;/* 优先响应点击事件 */
+  -webkit-tap-highlight-color: transparent;/* 去掉安卓点击时的蓝色高亮背景 */
+
+}
+
+/* 模拟选项单元格按下状态 */
+.pixel-cell:active{
+  box-shadow: 0 0 0 #000;/* 清除阴影，模拟被按下 */
+  transform: translate(1px, 1px);/* 元素整体向右下移动 */
 }

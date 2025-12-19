@@ -8,14 +8,46 @@ mobile-frame为手机背景框
     height: 100vh;/* 强制显示高度等于屏幕高度 */
     background-color: #fff; /* 在移动端时背景为白色或透明 */
     overflow: hidden;/* 禁止外层滚动 */
+    /* 使手机屏幕居中 */
+    display: flex; 
+    justify-content: center;/*左右居中 */
+    align-items: center; /*垂直居中 */
 }
 
+/* 
+手机壳模式
+*/
 .mobile-frame{
+    /* 占满屏幕 */
+    width: 90%;
+    height: 90%;
+    background-color: #fff;
+    overflow-y: auto; /* 允许垂直滚动 */
+    /* 优化部分 */
+    transform: translateZ(0); /* 看起来尺寸不变，但会触发GPU加速，优化弹窗功能 */
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);/* 过渡动画 */
+
+    /* 像素风手机壳 */
+    border: 6px solid #000000;
+    border-radius: 20px;/* 圆角 */
+    box-shadow: 12px 12px 0px rgba(0,0,0,0.5); /* 硬阴影，模拟厚度 */
+}
+
+.mobile-frame.mode-full-screen{
     /* 占满屏幕 */
     width: 100%;
     height: 100%;
     background-color: #fff;
     overflow-y: auto; /* 允许垂直滚动 */
+    /* 优化部分 */
+    transform: translateZ(0); /* 看起来尺寸不变，但会触发GPU加速，优化弹窗功能 */
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);/* 过渡动画 */
+
+    /* 像素风手机壳 */
+    border: none;
+    border-radius: 0;
+    box-shadow: none /* 硬阴影消失*/
+    
 }
 
 
@@ -36,18 +68,54 @@ mobile-frame为手机背景框
     overflow: hidden;/* 防止出现双滚动条 */
   }
 
-  /* 内层变成固定的手机尺寸 */
+  /* 
+  内层变成固定的手机尺寸 
+  手机壳模式
+  风格：像素风的手机壳
+  */
   .mobile-frame {
     /* 固定宽度和高度，仿照手机尺寸（其实并不 XD） */
     width: 480px; 
     height: 85vh; 
-    overflow-y: auto; /* 允许垂直滚动 */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* 边框阴影 */
 
+    /* 布局与定位 */
     position: relative;/* 相对位置，方便定义元素位置 */
+    display:grid;/* 使用grid布局 */
+    overflow-y: auto; /* 允许垂直滚动 */
+    background-color: #fff;
 
-    /* 使用grid布局 */
-    display:grid;
+    /* 优化 */
+    transform: translateZ(0); /* 看起来尺寸不变，但会触发GPU加速，优化弹窗功能 */
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); /* 添加过渡动画 */
+
+    /* 像素风手机壳 */
+    border: 6px solid #000; /* 粗黑边框 */
+    border-radius: 20px; /* 圆角 */
+    box-shadow: 12px 12px 0px rgba(0,0,0,0.5); /* 硬阴影，模拟厚度 */
+  }
+
+  /*
+  全屏模式
+  */
+  .mobile-frame.mode-full-screen{
+    /* 固定宽度和高度，仿照手机尺寸（其实并不 XD） */
+    width: 480px; 
+    height: 85vh; 
+
+    /* 布局与定位 */
+    position: relative;/* 相对位置，方便定义元素位置 */
+    display:grid;/* 使用grid布局 */
+    overflow-y: auto; /* 允许垂直滚动 */
+    background-color: #fff;
+
+    /* 优化 */
+    transform: translateZ(0); /* 看起来尺寸不变，但会触发GPU加速，优化弹窗功能 */
+    transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);/* 添加切换过渡动画 */
+
+    /* 去掉手机壳特征 */
+    border: 2px solid #000;
+    border-radius: 0px;
+  
   }
 
 }

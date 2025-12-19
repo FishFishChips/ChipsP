@@ -11,6 +11,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ChipsPixelswitch: typeof import('./src/components/chips-pixelswitch.vue')['default']
+    ChipsPixelSwitch: typeof import('./src/components/Chips-PixelSwitch.vue')['default']
+    PixelSwitch: typeof import('./src/components/PixelSwitch.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     VarAppBar: typeof import('@varlet/ui')['_AppBarComponent']
@@ -18,5 +21,7 @@ declare module 'vue' {
     VarButtonround: typeof import('@varlet/ui')['_ButtonroundComponent']
     VarCell: typeof import('@varlet/ui')['_CellComponent']
     VarIcon: typeof import('@varlet/ui')['_IconComponent']
+    VarPopup: typeof import('@varlet/ui')['_PopupComponent']
+    VarSwitch: typeof import('@varlet/ui')['_SwitchComponent']
   }
 }
