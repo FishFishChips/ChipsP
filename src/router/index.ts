@@ -20,6 +20,13 @@ const routes: Array<RouteRecordRaw> =
     component:() => import('../views/SettingView.vue')
   },
 
+  //组件测试页面
+  {
+    path:'/componenttest',
+    name:'componenttest',
+    component:()=>import('../views/Components-test.vue')
+  },
+
   //404路由规则
   {
     path:'/:pathMatch(.*)*',

@@ -47,7 +47,10 @@
     <!-- 点击系统设置显示的子菜单 -->
     <!-- 使用Varlet组件的popup模拟 -->
     <var-popup v-model:show="showSystemSettings" position="right" :overlay="false" class="subpage-popup"
-      teleport=".mobile-frame">
+      teleport=".mobile-screen" 
+      style="
+  
+      ">
       <!-- 系统设置子页面的容器 -->
       <div class="systemdetails">
 
@@ -64,11 +67,21 @@
 
         <!-- 系统设置子页面的内容区域 -->
         <main class="systemsub-content">
-          <var-cell title="屏幕切换" description="一键切换全屏/带边框！" border>
+          <var-cell title="屏幕切换" description="一键切换全屏/带边框！" class="sub-content" border>
             <template #extra>
               <!-- 自定义像素风组件 -->
               <chips-pixelswitch
               v-model="isFullScreenOn"
+              class="settingview-pixel-switch"
+              ripple="false"
+              />
+              </template>
+          </var-cell>
+          <var-cell title="状态栏切换" description="一键隐藏/显示状态栏！" class="sub-content" border>
+            <template #extra>
+              <!-- 自定义像素风组件 -->
+              <chips-pixelswitch
+              v-model="isStatusBarVisibleOn"
               class="settingview-pixel-switch"
               ripple="false"
               />
@@ -118,6 +131,15 @@ const isFullScreenOn = computed({
   set: (val:boolean) => appStore.toggleFullScreen(val)
 })
 
+/*
+控制状态栏的显示与隐藏
+*/ 
+const{isStatusBarVisible} = storeToRefs(appStore)
+const isStatusBarVisibleOn = computed({
+get: () => isStatusBarVisible.value,
+set: (val:boolean) => appStore.toggleStatusBarVisible(val)
+
+})
 
 </script>
 
@@ -131,26 +153,41 @@ const isFullScreenOn = computed({
 风格：像素风
 */
 .settingview-pixel-nav {
+  /* 背景：白色 */
   --app-bar-color: #ffffff;
-  /* 背景设为白色 */
+  /* 文字：黑色 */
   --app-bar-text-color: #000000;
-  /* 文字设为黑色 */
+  /* 字间距 */
   letter-spacing: 1px;
 
-  /* --- 像素风样式 --- */
+  /*
+  像素风样式
+  */
+  /* 边框：4px宽 黑色 */
   border-bottom: 4px solid #000000;
-  /* 粗边框 */
-  box-shadow: 0 5px 0px #A78BFA;
   /* 硬阴影 */
+  box-shadow: 0 5px 0px #A78BFA;
+  /* 底下间距，仿制遮挡其他内容 */
   margin-bottom: 10px;
-  /* 撑开下边距 */
+
+  /* 禁止用户选择文字 */
+  user-select: none;
 }
 
 /* 自定义子页面弹窗样式 */
-.subpage-popup {
+.subpage-popup{
+  /* 
+  定位与布局
+  保证弹窗从mobile-screen处弹出
+  */
   width: 100%;
   height: 100%;
+  z-index: 10;
   background: #ffffff;
+  box-shadow: none;
+  /*
+  动画
+  */ 
   transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 

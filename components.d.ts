@@ -13,6 +13,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ChipsPixelswitch: typeof import('./src/components/chips-pixelswitch.vue')['default']
     ChipsPixelSwitch: typeof import('./src/components/Chips-PixelSwitch.vue')['default']
+    ChipsStatusbar: typeof import('./src/components/chips-statusbar.vue')['default']
     PixelSwitch: typeof import('./src/components/PixelSwitch.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
