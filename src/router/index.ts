@@ -10,6 +10,7 @@ const routes: Array<RouteRecordRaw> =
   {
     path: '/',
     name: 'Home',
+    meta: {index:0},
     component: () => import('../views/HomeView.vue')
   },
 
@@ -17,7 +18,16 @@ const routes: Array<RouteRecordRaw> =
   {
     path:'/settings',
     name:'settings',
+    meta: {index:1},
     component:() => import('../views/SettingView.vue')
+  },
+
+  //chat页面路由规则
+  {
+    path:'/chat',
+    name:'chat',
+    meta: {index:1},
+    component:() => import('../views/ChatView.vue')
   },
 
   //组件测试页面

@@ -1,13 +1,14 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
-
 /*
 stores名称：appStore.ts
 作用:用来管理全局应用状态
 管理的状态如下：
 1. 是否全屏
-2. 真实的手机系统状态获取/模拟
+2. 真实的手机系统状态（电池、时间）获取/模拟
+3. 状态栏状态管理：显示与隐藏
 */
+
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useAppStore = defineStore('app', () => {
 
@@ -52,6 +53,10 @@ export const useAppStore = defineStore('app', () => {
         }
     }
 
+    //时间监听锁
+    let timeIntervalId:number|null = null;
+    //电池监听锁
+    let isBatteryListenerAdded:boolean|null = null;
 
     /*
     初始化系统监听
@@ -64,6 +69,7 @@ export const useAppStore = defineStore('app', () => {
         每隔一秒更新当前时间
         */
         //更新时间逻辑
+        if(!timeIntervalId){
         const updateClock = () =>{
             const now = new Date()//创建一个当前时间对象（包含年月日时分秒）
             const hours = String(now.getHours()).padStart(2, '0')//获取小时，不满两位数则用0补足
@@ -75,12 +81,15 @@ export const useAppStore = defineStore('app', () => {
         console.log("更新时间")
 
         setInterval(updateClock,1000)
+        timeIntervalId= setInterval(updateClock,1000)
+    }
 
         /* 
         电池监听
         处理ios不支持的情况
         @ts-ignore:getBattery可能不识别，无视报错
         */
+       if(!isBatteryListenerAdded){
        //@ts-ignore
         if (navigator.getBattery) {
             try {
@@ -96,7 +105,7 @@ export const useAppStore = defineStore('app', () => {
                 updateBattery()
                 battery.addEventListener('levelchange', updateBattery)//监听电池变化
                 battery.addEventListener('chargingchange', updateBattery)//监听充电状态
-
+                isBatteryListenerAdded = true 
             } catch (error) {
                 //捕捉获取状态失败的错误信息
                 isBatterySupported.value = false
@@ -109,7 +118,7 @@ export const useAppStore = defineStore('app', () => {
             //调用辅助函数，读取本地存储的设置
             loadSimulationData()
         }
-    }
+    }}
 
     /*
     模拟设置：手动设置模拟电量，供settings页面调用

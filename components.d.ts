@@ -11,9 +11,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ChipsDialog: typeof import('./src/components/chips-dialog.vue')['default']
     ChipsPixelswitch: typeof import('./src/components/chips-pixelswitch.vue')['default']
     ChipsPixelSwitch: typeof import('./src/components/Chips-PixelSwitch.vue')['default']
     ChipsStatusbar: typeof import('./src/components/chips-statusbar.vue')['default']
+    ChipsToast: typeof import('./src/components/chips-toast.vue')['default']
+    PixelClock: typeof import('./src/components/widgets/PixelClock.vue')['default']
     PixelSwitch: typeof import('./src/components/PixelSwitch.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -23,6 +26,7 @@ declare module 'vue' {
     VarCell: typeof import('@varlet/ui')['_CellComponent']
     VarIcon: typeof import('@varlet/ui')['_IconComponent']
     VarPopup: typeof import('@varlet/ui')['_PopupComponent']
+    VarSnackbar: typeof import('@varlet/ui')['_SnackbarComponent']
     VarSwitch: typeof import('@varlet/ui')['_SwitchComponent']
   }
 }

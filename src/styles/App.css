@@ -74,64 +74,28 @@ mobile-frame为手机背景框
 
 /* 手机内容屏幕 */
 .mobile-screen {
-  /* 允许垂直滚动 */
-  overflow-y: auto;
   /* 
   优化部分
   */
   /* 看起来尺寸不变，但会触发GPU加速，优化弹窗功能 */
   transform: translateZ(0);
-}
-
-/* 
-
-  针对手机框的滚动条美化：设置成透明，滚动条依旧存在
-  WebKit内核浏览器：Chrome/Edge/Safari
-  不兼容Firefox/IE
-*/
-/* 滚动条样式 */
-.mobile-screen::-webkit-scrollbar {
-  width: 6px;
-}
-
-/* 
-滚动条轨道样式：设置成透明
- */
-.mobile-screen::-webkit-scrollbar-track {
-  /* 
-  给轨道上下添个margin，以免边框模式时轨道条露出来
-   */
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background: transparent;
-}
-
-/* 
-滚动条滑块样式:设置成透明
- */
-.mobile-screen::-webkit-scrollbar-thumb {
-  background-color: transparent
-}
-
-/* 
-手机屏幕布局调整
- */
-.mobile-screen {
-  /* 
+   /* 
     滚动权限
      */
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   /* 
     布局与定位
     */
-  display: grid;
-  flex: 1;
+  display: block;
   /* 防止子元素撑破父容器 */
-  height: 0;
   position: relative;
+  /*
+  尺寸:填满mobile-frame
+  */
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
 }
-
 /* 
 状态栏布局调整
  */
@@ -163,7 +127,6 @@ mobile-frame为手机背景框
   opacity: 0;
 }
 
-
 /* 
 电脑端适配 
 当屏幕宽度大于600px时才执行下面代码
@@ -175,8 +138,8 @@ mobile-frame为手机背景框
   手机壳模式
   */
   .mobile-frame {
-    /* 固定宽度和高度，仿照手机尺寸（其实并不 XD） */
-    width: 480px;
+    /* 固定宽高度比例，仿照手机尺寸（其实并不 XD） */
+    width: 50vh;
     height: 85vh;
   }
 
@@ -184,8 +147,8 @@ mobile-frame为手机背景框
   全屏模式
   */
   .mobile-frame.mode-full-screen {
-    /* 固定宽度和高度，仿照手机尺寸（其实并不 XD） */
-    width: 480px;
+    /* 固定宽高度比例，仿照手机尺寸（其实并不 XD） */
+    width: 50vh;
     height: 85vh;
 
     /* 去掉手机壳特征 */

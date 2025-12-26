@@ -47,10 +47,7 @@
     <!-- 点击系统设置显示的子菜单 -->
     <!-- 使用Varlet组件的popup模拟 -->
     <var-popup v-model:show="showSystemSettings" position="right" :overlay="false" class="subpage-popup"
-      teleport=".mobile-screen" 
-      style="
-  
-      ">
+      teleport=".mobile-screen">
       <!-- 系统设置子页面的容器 -->
       <div class="systemdetails">
 
@@ -70,24 +67,16 @@
           <var-cell title="屏幕切换" description="一键切换全屏/带边框！" class="sub-content" border>
             <template #extra>
               <!-- 自定义像素风组件 -->
-              <chips-pixelswitch
-              v-model="isFullScreenOn"
-              class="settingview-pixel-switch"
-              ripple="false"
-              />
-              </template>
+              <chips-pixelswitch v-model="isFullScreenOn" class="settingview-pixel-switch" ripple="false" />
+            </template>
           </var-cell>
           <var-cell title="状态栏切换" description="一键隐藏/显示状态栏！" class="sub-content" border>
             <template #extra>
               <!-- 自定义像素风组件 -->
-              <chips-pixelswitch
-              v-model="isStatusBarVisibleOn"
-              class="settingview-pixel-switch"
-              ripple="false"
-              />
-              </template>
+              <chips-pixelswitch v-model="isStatusBarVisibleOn" class="settingview-pixel-switch" ripple="false" />
+            </template>
           </var-cell>
-          
+
         </main>
 
       </div>
@@ -99,7 +88,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useAppStore } from '@/stores/appStore'
-import {computed} from 'vue'//引入computed
+import { computed } from 'vue'//引入computed
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia' //引入storeToRefs保持响应性
 
@@ -120,7 +109,7 @@ const openSystemSettings = () => {
 
 /*
 控制应用全屏切换
-*/ 
+*/
 //使用 storeToRefs 解构状态，保持响应式
 const { isFullScreen } = storeToRefs(appStore)
 //创建一个可读写的计算属性
@@ -128,16 +117,16 @@ const isFullScreenOn = computed({
   //获取值时：读取store里的状态
   get: () => isFullScreen.value,
   //修改值时，即点开开关：调用store的action
-  set: (val:boolean) => appStore.toggleFullScreen(val)
+  set: (val: boolean) => appStore.toggleFullScreen(val)
 })
 
 /*
 控制状态栏的显示与隐藏
-*/ 
-const{isStatusBarVisible} = storeToRefs(appStore)
+*/
+const { isStatusBarVisible } = storeToRefs(appStore)
 const isStatusBarVisibleOn = computed({
-get: () => isStatusBarVisible.value,
-set: (val:boolean) => appStore.toggleStatusBarVisible(val)
+  get: () => isStatusBarVisible.value,
+  set: (val: boolean) => appStore.toggleStatusBarVisible(val)
 
 })
 
@@ -175,7 +164,7 @@ set: (val:boolean) => appStore.toggleStatusBarVisible(val)
 }
 
 /* 自定义子页面弹窗样式 */
-.subpage-popup{
+.subpage-popup {
   /* 
   定位与布局
   保证弹窗从mobile-screen处弹出
@@ -187,8 +176,7 @@ set: (val:boolean) => appStore.toggleStatusBarVisible(val)
   box-shadow: none;
   /*
   动画
-  */ 
+  */
   transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-
 </style>

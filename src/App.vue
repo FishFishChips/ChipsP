@@ -21,7 +21,7 @@
       <!-- 手机屏幕内部容器 -->
       <div class="mobile-screen">
       <!-- router-view为占位符，会获取匹配条件的组件并展示在此-->
-      <router-view />
+      <router-view/>
       </div>
     </div>
   </div>
@@ -30,8 +30,10 @@
 <script setup lang="ts">
 import { useAppStore } from './stores/appStore';
 
+
 //初始化store，以便在template里使用
 const appStore = useAppStore()
+
 </script>
 
 <style scoped>
