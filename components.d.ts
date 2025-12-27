@@ -12,6 +12,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ChipsDialog: typeof import('./src/components/chips-dialog.vue')['default']
+    ChipsPixelbin: typeof import('./src/components/chips-pixelbin.vue')['default']
+    ChipsPixelbtn: typeof import('./src/components/chips-pixelbtn.vue')['default']
     ChipsPixelswitch: typeof import('./src/components/chips-pixelswitch.vue')['default']
     ChipsPixelSwitch: typeof import('./src/components/Chips-PixelSwitch.vue')['default']
     ChipsStatusbar: typeof import('./src/components/chips-statusbar.vue')['default']
@@ -21,8 +23,11 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     VarAppBar: typeof import('@varlet/ui')['_AppBarComponent']
+    VarBottomNavigation: typeof import('@varlet/ui')['_BottomNavigationComponent']
+    VarBottomNavigationItem: typeof import('@varlet/ui')['_BottomNavigationItemComponent']
     VarButton: typeof import('@varlet/ui')['_ButtonComponent']
     VarButtonround: typeof import('@varlet/ui')['_ButtonroundComponent']
+    VarCard: typeof import('@varlet/ui')['_CardComponent']
     VarCell: typeof import('@varlet/ui')['_CellComponent']
     VarIcon: typeof import('@varlet/ui')['_IconComponent']
     VarPopup: typeof import('@varlet/ui')['_PopupComponent']

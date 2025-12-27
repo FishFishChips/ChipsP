@@ -9,17 +9,17 @@
      fixed: 是否固定在顶部 (选填，因为用了 flex 布局，这里可以不填，或者填 false)
      safe-area-top: 自动适配刘海屏
      elevation: 阴影深度 (true/false)
-     style:css美化样式
+     style:css美化样式设置设置
      -->
     <var-app-bar class="settingview-pixel-nav" title="SETTINGS" title-position="center"
-      style="--app-bar-title-font-size: 22px;/* 标题字体大小 */" :elevation="false">
+      style="--app-bar-title-font-size: 20px;/* 标题字体大小 */" :elevation="false">
       <!-- 左侧插槽：放返回按钮 -->
       <template #left>
         <!-- 自定义像素风返回按钮 -->
-        <button class="pixel-btn" @click="goHome">
+        <chips-pixelbtn  style="margin-left: 6px;" width="36px" height="26px" bgColor="#a98bd3" textColor="#fff" @click="goHome">
           <!-- varlet自带的图标库名字 -->
           <var-icon name="chevron-left" :size="20" />
-        </button>
+        </chips-pixelbtn>
       </template>
     </var-app-bar>
 
@@ -46,7 +46,7 @@
 
     <!-- 点击系统设置显示的子菜单 -->
     <!-- 使用Varlet组件的popup模拟 -->
-    <var-popup v-model:show="showSystemSettings" position="right" :overlay="false" class="subpage-popup"
+    <var-popup v-model:show="showSystemSettings" position="right" :overlay="true" class="subpage-popup"
       teleport=".mobile-screen">
       <!-- 系统设置子页面的容器 -->
       <div class="systemdetails">
@@ -56,9 +56,9 @@
           style="--app-bar-title-font-size: 20px;/* 标题字体大小 */">
           <!-- 返回按钮插槽，用于关闭popup，不操作路由 -->
           <template #left>
-            <button class="pixel-btn" @click="showSystemSettings = false">
+            <chips-pixelbtn style="margin-left: 6px;" width="36px" height="26px" bgColor="#a98bd3" textColor="#fff" class="pixel-btn" @click="showSystemSettings = false">
               <var-icon name="chevron-left" :size="20" />
-            </button>
+            </chips-pixelbtn>
           </template>
         </var-app-bar>
 

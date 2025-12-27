@@ -18,7 +18,7 @@
   position: relative;
   /* 溢出margin防止出滚动条 */
   margin: 0;
-  padding: 20px 10px;
+  padding: 20px 16px;
 
   /*
   背景图片优化
@@ -46,9 +46,9 @@
   /* 列设置：固定4列，每列等宽 */
   grid-template-columns: repeat(4, 1fr);
   /* 行设置：固定6行 */
-  grid-template-rows: repeat(8, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   /* 让子元素之间自动留出均等距离 */
-  gap: 10px;
+  gap: 20px 10px;
   /* 先行后列 */
   grid-auto-flow: row dense;
 }
@@ -58,7 +58,8 @@
 */
 .default-text-icon {
   user-select: none;
-  color:#311B92
+  color:#311B92;
+  font-size:clamp(8px, 2.5vw, 13px);
 }
 /*
 裹在应用图标和组件的框
@@ -103,11 +104,18 @@
   /* 变为左右居中 */
   align-items: center;
   /* 固定宽度 */
-  width: 75px;
-  height: 75px;
+  width: 100%;
+  height: 100%;
+
   /* 指针放置在上变成点击模式 */
   cursor: pointer;
   transition: transform 0.1s;
+ /* 
+  给文字留出一点保险空间
+  如果屏幕特别小，padding 可以防止图标顶到格子的边缘 
+  */
+  padding: 4px 0; 
+  box-sizing: border-box;
 }
 /*
 点击应用图标的效果
@@ -122,10 +130,12 @@
 应用图标的样式
 */
 .app-icon-wrapper {
-  width: 56px;
-  height: 56px;
+  width: 60%;
+  /* 强制保持1：1正方形比例 */
+  aspect-ratio: 1/1;
+  height: auto;
   background: #fff;
-  border: 2px solid #000;
+  border: 3px solid #000;
   /* 像素描边风格 */
   box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
   /* 硬阴影 */
@@ -141,6 +151,37 @@
   height: 100%;
   object-fit: cover;
   image-rendering: pixelated;
+}
+
+/*
+app底下的名字样式
+*/
+.app-name {
+  /* 字体大小*/
+  font-size: clamp(8px, 2.5vw, 13px);       
+  /* 字体颜色*/
+  color: #311B92;       
+  /* 文字居中 */ 
+  text-align: center;    
+  line-height: 1.4;
+
+  /* 处理长文件名：超出显示省略号 */
+  /* 宽度占满格子 */
+  width: 100%;           
+  /* 左右留一点缝隙 */
+  padding: 0 2px;        
+  /* 不换行 */
+  white-space: nowrap;   
+  /* 超出隐藏 */
+  overflow: hidden;      
+  /* 超出显示省略号... */
+  text-overflow: ellipsis; 
+
+  /*
+  调整文字位置
+  */
+  padding-top: 6px;
+  box-sizing: border-box;
 }
 
 /*

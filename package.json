@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "@varlet/ui": "^3.12.3",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "^4.7.1",

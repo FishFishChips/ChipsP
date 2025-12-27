@@ -21,52 +21,6 @@
     overflow: hidden;
 }
 
-/* 
-自定义导航栏返回按钮的样式
-风格：像素风
-部分功能：去除电脑端点击时的黑边
-*/
-.pixel-btn{
-  /* 调整按钮背景大小 */
-  width: 36px;
-  height: 36px;
-  
-  /* 颜色设置 */
-  background-color: #a98bd3; /* 按钮背景颜色 */
-  color: #fff;/* 按钮本体颜色 */
-  
-  /* 像素风边框 */
-  border: 3px solid #000;
-  border-radius: 0; /* 严禁圆角 */
-  
-  /* 按钮的硬阴影 */
-  box-shadow: 3px 3px 0px rgba(0,0,0,0.8);
-  
-  /* 居中图标 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* 其他设置 */
-  cursor: pointer;/* 当鼠标移到按钮上时，鼠标会变成点击形态 */
-  transition: all 0.2s;/* 过渡动画时间 */
-  outline:none; /*去除黑边 */
-}
-
-/* 返回按钮按住时的动画效果 */
-.pixel-btn:active{
-    /*
-    阴影变紫
-    模拟像素风压感
-    */
-  box-shadow: 1px 1px 0 rgba(124, 58, 237, 0.8);
-  transform: translate(2px, 2px); 
-  /*关掉浏览器默认的点击高亮效果*/
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-}
-
-
 .setting-content{
     flex:1;/* 导航栏所占布局为0，flex:1即让剩下内容占满设置页面的布局 */
     min-height: 0; 

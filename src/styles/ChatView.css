@@ -1,0 +1,63 @@
+/*
+聊天界面设置
+*/
+.chat-page{
+    /* 固定设置页面，防止因内容过多而内容溢出 */
+    position:absolute;
+    top:0;
+    left:0;
+    /* 让聊天页面撑满父容器 */
+    width:100%;
+    height:100%;
+    /*
+    确认设置页面布局
+    布局：弹性盒flex布局
+    元素排列：垂直排列
+    */
+    display: flex;
+    flex-direction: column;
+    /* 禁止整个页面滑动 */
+    overflow: hidden;
+}
+/* 
+中间内容区域样式
+ */
+.chat-content {
+  /* 占据剩余所有空间 */
+  flex: 1; 
+  /* 内容超出时，只有这里滚动 */
+  overflow-y: auto; 
+  padding: 10px;
+  position: relative;
+}
+/*
+  针对中间内容区域的滚动条美化：设置成透明，滚动条依旧存在
+  WebKit内核浏览器：Chrome/Edge/Safari
+  不兼容Firefox/IE
+*/
+/* 滚动条样式 */
+.chat-content::-webkit-scrollbar {
+  width:6px;
+}
+/*
+滚动条轨道样式：设置成透明
+ */
+.chat-content::-webkit-scrollbar-track{
+  /*给轨道上下添个margin，以免边框模式时轨道条露出来*/
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: transparent;
+}
+/*
+滚动条滑块样式:设置成透明
+ */
+.chat-content::-webkit-scrollbar-thumb {
+  background-color: transparent
+}
+
+/* 
+tab内容样式 
+*/
+.tab-pane {
+
+}

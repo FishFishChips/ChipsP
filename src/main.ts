@@ -9,6 +9,8 @@ import "./styles/global.css"
 import { createPinia } from 'pinia'
 //引入pinia全局状态持久化插件
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+//引入Material Design Icons图标库样式
+import '@mdi/font/css/materialdesignicons.css' 
 
 const app = createApp(App)//创建Vue应用实例
 const pinia = createPinia() //创建pinia实例

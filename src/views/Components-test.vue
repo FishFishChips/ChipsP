@@ -1,7 +1,8 @@
 <template>
   <div class="home-screen">
-    <button @click="handleClick">123test</button>
+    <chips-pixelbtn label="测试大按钮" font-size="30" width="300px"@click="handleClick"></chips-pixelbtn>
     </div>
+
 </template>
 
 <script setup lang="ts">

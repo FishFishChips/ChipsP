@@ -14,7 +14,7 @@
     item-key:告诉库哪个字段是唯一键
     -->
     <VueDraggable v-model="layout" class="draggable-screen" :animation="150" :delay="300"
-      :delayOnTouchOnly="true" item-key="id">
+      :delayOnTouchOnly="false" item-key="id">
 
       <!-- 
       渲染多个格子，用来存储图标
@@ -36,6 +36,7 @@
             <img v-if="element.path" :src="element.path" :alt="element.name" class="app-icon" />
             <div v-else class="default-text-icon">{{ element.name }}</div>
           </div>
+          <span class="app-name"> {{element.name}} </span>
         </div>
 
         <!-- widget -->
